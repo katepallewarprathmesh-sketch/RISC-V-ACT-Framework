@@ -81,7 +81,8 @@ int configure_uart(int fd, int baudrate)
     if (tcgetattr(fd, &tty) != 0)
     {
         perror("tcgetattr");
-        return -1;
+        fprintf(stderr, "Not a tty device, skipping UART configuration\n");
+        return 0;
     }
 
     /*
@@ -110,14 +111,16 @@ int configure_uart(int fd, int baudrate)
      *   - 1 stop bit
      *   - No hardware flow control
      */
-    tty.c_cflag &= ~PARENB;      /* No parity */
-    tty.c_cflag &= ~CSTOPB;      /* 1 stop bit */
-    tty.c_cflag &= ~CSIZE;
-    tty.c_cflag |= CS8;          /* 8 bits */
-
-    tty.c_cflag &= ~CRTSCTS;     /* Disable RTS/CTS flow control */
-
-    tty.c_cflag |= CREAD | CLOCAL;
+        tty.c_cflag &= ~PARENB;      /* No parity */
+        tty.c_cflag &= ~CSTOPB;      /* 1 stop bit */
+        tty.c_cflag &= ~CSIZE;
+        tty.c_cflag |= CS8;          /* 8 bits */
+    
+    #ifdef CRTSCTS
+        tty.c_cflag &= ~CRTSCTS;     /* Disable RTS/CTS flow control */
+    #endif
+    
+        tty.c_cflag |= CREAD | CLOCAL;
 
     /*
      * Disable software flow control.
