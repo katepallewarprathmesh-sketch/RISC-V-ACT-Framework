@@ -1,5 +1,5 @@
 /*
- * uart_demo.c
+ * uart.c
  *
  * Linux UART communication demo using termios.
  *
@@ -11,7 +11,7 @@
  *  - Robust error handling
  *
  * Example:
- *   ./uart_demo /dev/ttyUSB0 115200
+ *   ./uart /dev/ttyUSB0 115200
  *
  * Suitable for:
  *   - Embedded Linux
