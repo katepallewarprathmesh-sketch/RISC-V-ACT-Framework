@@ -3,7 +3,7 @@
 This project demonstrates how to initialize and configure a UART interface on Linux using the termios API in C. It includes robust error handling, non-blocking I/O for receiving data, and clear code comments.
 
 ## Files
-- `uart_example.c`: Main C source file implementing UART configuration, transmission, and reception.
+- `uart.c`: Main C source file implementing UART configuration, transmission, and reception.
 - `Makefile`: For building the project.
 
 ## Build Instructions
