@@ -5,6 +5,7 @@ This project demonstrates how to initialize and configure a UART interface on Li
 ## Files
 - `uart.c`: Main C source file implementing UART configuration, transmission, and reception.
 - `Makefile`: For building the project.
+- `uart`: Compiled binary executable.
 
 ## Build Instructions
 
@@ -21,14 +22,22 @@ This project demonstrates how to initialize and configure a UART interface on Li
 
 ## Run Instructions
 
-Run the program with the UART device path as an argument (e.g., `/dev/ttyS0` or `/dev/ttyUSB0`):
+Run the program with the UART device path and baud rate as arguments:
 
 ```sh
-sudo ./uart_example /dev/ttyS0
+sudo ./uart /dev/ttyUSB0 115200
+```
+
+Or with other device paths:
+```sh
+sudo ./uart /dev/ttyS0 115200
+./uart /dev/null 115200    # Testing without hardware
 ```
 
 - `sudo` may be required for device access.
 - The program will send a test message and print any received data.
+- First argument: UART device path (e.g., `/dev/ttyS0`, `/dev/ttyUSB0`)
+- Second argument: Baud rate (e.g., 9600, 19200, 38400, 57600, 115200)
 
 ## Notes
 - Ensure you have permission to access the UART device.
